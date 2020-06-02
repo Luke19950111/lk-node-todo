@@ -38,6 +38,7 @@ function remove(list, index){
     db.write(list)
 }
 function askForAction(list, index){
+    const actions = {markAsUndone, markAsDone, remove, updateTitle}
     inquirer.prompt({
         type: 'list', name: 'action',
         message: '请选择操作',
@@ -49,20 +50,8 @@ function askForAction(list, index){
             {name: '删除', value: 'remove'}
         ]
     }).then(answer2 => {
-        switch(answer2.action){
-            case 'markAsDone':
-                markAsDone(list, index)
-                break
-            case 'markAsUndone':
-                markAsUndone(list, index)
-                break
-            case 'updateTitle':
-                updateTitle(list, index)
-                break
-            case 'remove':
-                remove(list, indexedDB)
-                break
-        }
+        const action = actions[answer2.action]
+        action && action(list, index)
     })
 }
 function askForCreateTask(list){
