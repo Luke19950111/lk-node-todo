@@ -1,8 +1,9 @@
 const { program } = require('commander');
 const api = require('./index.js');
+const pkg = require('./package.json')
 
 program
-    .option('-x, --xxx', 'what is x')
+    .version(pkg.version)
 program
     .command('add')
     .description('add a task')
@@ -17,9 +18,17 @@ program
 program
     .command('clear')
     .description('clear all tasks')
-    .action((source, destination) => {
-      console.log('this is clear.')
+    .action(() => {
+      api.clear()
     });
  
 
 program.parse(process.argv);
+console.log(process.argv)
+
+
+if(process.argv.length === 2){
+  //说明直接运行 node cli.js
+  console.log(1)
+    api.showAll()
+}
