@@ -73,9 +73,9 @@ function printTasks(list){
             type: 'list',
             name: 'index',
             message: '请选择你想操作的任务',
-            choice: [{name: '退出', value: '-1'}, ...list.map((task, index)=>{
+            choices: [{name: '退出', value: '-1'}, ...list.map((task, index)=>{
                 return {name: `${task.done ? '[x]' : '[_]'} ${index+1} - ${task.title}`, value: index.toString()}
-            }), {name: '+创建任务', value: '-2'}]
+            }), {name: '+ 创建任务', value: '-2'}]
         })
         .then(answer => {
             const index = parseInt(answer.index)

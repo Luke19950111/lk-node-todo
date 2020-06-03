@@ -23,14 +23,19 @@ program
     .action(() => {
       api.clear()
     });
+program
+    .command('list')
+    .description('todo list')
+    .action(() => {
+      api.showAll()
+    });
  
 
 program.parse(process.argv);
-console.log(process.argv)
 
+// if(process.argv.length === 2){
+//   //说明直接运行 node cli.js
+//   console.log(1)
+//     api.showAll()
+// }
 
-if(process.argv.length === 2){
-  //说明直接运行 node cli.js
-  console.log(1)
-    api.showAll()
-}
